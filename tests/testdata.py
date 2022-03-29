@@ -9,13 +9,8 @@ fake = Faker()
 
 
 def create_symptom(session: Session, **kwargs) -> Symptom:
-    props = {
-        "id": str(uuid.uuid4()),
-        "name": fake.name()
-    }
-    props.update(kwargs)
-
-    symptom = Symptom(**props)
+    defaults = {"id": str(uuid.uuid4()), "name": fake.name()}
+    symptom = Symptom(**{**defaults, **kwargs})
     session.add(symptom)
     session.commit()
     return symptom
