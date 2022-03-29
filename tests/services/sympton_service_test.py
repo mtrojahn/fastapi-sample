@@ -17,9 +17,12 @@ client = TestClient(app)
 session = SessionLocal()
 
 
-# runs before each test to recreate tables. they are in-memory, so they are not persistent
-def setup_module():
+def setup_function():
     Base.metadata.create_all(bind=engine)
+
+
+def teardown_function():
+    Base.metadata.drop_all(bind=engine)
 
 
 def test_get_available_symptoms():
