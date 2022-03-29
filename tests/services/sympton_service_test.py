@@ -34,5 +34,3 @@ def test_get_available_symptoms():
     assert len(result) == 1
     assert result[0]["name"] == symptom.name
     assert result[0]["id"] == symptom.id
-
-    print(result[0]["name"])

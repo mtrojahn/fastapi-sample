@@ -22,5 +22,10 @@ def get_db():
     db = SessionLocal(bind=connection)
     try:
         yield db
+    except Exception as e:
+        connection.rollback()
+        raise e
     finally:
         connection.close()
+        db.close()
+

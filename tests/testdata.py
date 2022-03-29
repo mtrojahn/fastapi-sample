@@ -12,5 +12,5 @@ def create_symptom(session: Session, **kwargs) -> Symptom:
     defaults = {"id": str(uuid.uuid4()), "name": fake.name()}
     symptom = Symptom(**{**defaults, **kwargs})
     session.add(symptom)
-    session.commit()
+    session.flush()
     return symptom
