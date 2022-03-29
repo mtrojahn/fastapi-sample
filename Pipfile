@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "==0.75.0"
+uvicorn = {version = "==0.17.6", extras = ["standard"]}
+sqlalchemy = "==1.4.32"
+requests = "==2.27.1"
+
+[dev-packages]
+black = "*"
+pytest = "*"
+bandit = {extras = ["toml"], version = "*"}
+isort = "*"
+
+[requires]
+python_version = "3.9"
