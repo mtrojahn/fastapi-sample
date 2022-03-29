@@ -7,7 +7,7 @@ from tests import testdata
 
 app = create_app()
 client = TestClient(app)
-session: Session = SessionLocal()
+session = SessionLocal()
 
 
 def setup_module():
