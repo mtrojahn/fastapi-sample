@@ -18,5 +18,5 @@ class SymptomLog(Base):
     severity = Column(Integer, nullable=False)
     date = Column(Date, nullable=False)
 
-    symptom = relationship("Symptom")
-    user = relationship("User")
+    # symptom = relationship("Symptom")
+    # user = relationship("User")

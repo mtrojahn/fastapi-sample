@@ -1,12 +1,14 @@
 import datetime
 
-from models.symptom import Symptom
+from sqlalchemy.orm import Session
+
+from models.symptoms import Symptom
 
 
 class SymptomService:
     @classmethod
-    def get_available_symptoms(cls):
-        pass
+    def get_available_symptoms(cls, db: Session):
+        return db.query(Symptom).all()
 
     @classmethod
     def get_selected_symptoms(cls, user_id: str):

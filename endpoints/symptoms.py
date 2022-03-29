@@ -1,16 +1,18 @@
 from typing import List
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
 
-from schemas.symptoms import SymptomListSchema, SymptomIdList
+from application.database import get_db
+from schemas.symptoms import SymptomIdList, SymptomListSchema, SymptomSchema
 from services.symptoms import SymptomService
 
 router = APIRouter()
 
 
-@router.get("/symptoms/available")
-async def get_available_symptoms() -> SymptomListSchema:
-    return SymptomService.get_available_symptoms()
+@router.get("/symptoms/available", response_model=List[SymptomSchema])
+async def get_available_symptoms(db: Session = Depends(get_db)):
+    return SymptomService.get_available_symptoms(db)
 
 
 @router.post("/symptoms/set_tracked_symptoms")

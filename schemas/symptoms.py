@@ -12,10 +12,8 @@ class SymptomIdList(BaseModel):
 
 
 class SymptomSchema(BaseModel):
+    id: str
     name: str
-    description: str
-    severity: str
-    category: str
 
     class Config:
         orm_mode = True
