@@ -4,29 +4,26 @@ run:
 	python main.py
 
 # CI checks
-test-check:
+ci-tests:
 	python -m pytest -v --no-header
 
-bandit-check:
+ci-bandit-check:
 	bandit -r . -c "pyproject.toml"
 
-format-check:
+ci-black-check:
 	black . --check
 
-isort-check:
+ci-isort-check:
 	isort --check .
 
-
-# dev tasks
-format:
+# Dev tasks (usually before pull requests)
+format: ci-bandit-check
 	black .
-
-isort:
 	isort .
 
-run-tests: test-check
+test:
+	python -m pytest -v --no-header
 
-check-linters: format-check isort-check
-
-prepare-for-push: format isort
+test-full-output:
+	python -m pytest -v --no-header --capture=no
 
